@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background-color: #24293d;
+        color: #f4f4fc;
+      }
+      h1,
+      h2 {
+        text-align: center;
+      }
+      h1 {
+        margin-top: 0;
+        margin-bottom: 5px;
+      }
+      h2 {
+        margin-top: 5px;
+        margin-bottom: 0;
+      }
+      #rgbVal {
+        text-align: center;
+      }
+      #display {
+        height: 300px;
+        width: 300px;
+        border: 5px #2f3855 solid;
+        border-radius: 5%;
+        position: relative;
+        left: 20%;
+        margin-bottom: 15px;
+      }
+      #inputs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: row;
+      }
+      input {
+        display: block;
+      }
+      #container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      input[type="range"] {
+        height: 8px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      fieldset {
+        border-radius: 5px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+    </style>
+    <title>Color Slider</title>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Color Slider</h1>
+      <div id="display"></div>
+      <div id="inputs">
+        <fieldset>
+          Red: <input id="red" type="range" min="0" max="255" value="0" />
+        </fieldset>
+        <fieldset>
+          Green: <input id="green" type="range" min="0" max="255" value="0" />
+        </fieldset>
+        <fieldset>
+          Blue: <input id="blue" type="range" min="0" max="255" value="0" />
+        </fieldset>
+      </div>
+      <h2 id="h2">
+        RGB Value String:
+        <br />
+        <h2 id="rgbVal">RGB()</h2>
+      </h2>
+    </div>
+    <script>
+      const rgbVal = document.getElementById("rgbVal");
+      const display = document.getElementById("display");
+      const inputs = document.getElementById("inputs");
+      const red = document.getElementById("red");
+      const blue = document.getElementById("blue");
+      const green = document.getElementById("green");
+
+      let redVal = 0;
+      let greenVal = 0;
+      let blueVal = 0;
+
+      function getValue() {
+        display.style.backgroundColor = `rgb(${redVal},${greenVal},${blueVal})`;
+        rgbVal.innerText = `RGB(${redVal},${greenVal},${blueVal})`;
+      }
+      red.addEventListener("input", () => {
+        redVal = red.value;
+        getValue();
+      });
+
+      blue.addEventListener("input", () => {
+        blueVal = blue.value;
+        getValue();
+      });
+      green.addEventListener("input", () => {
+        greenVal = green.value;
+        getValue();
+      });
+    </script>
+  </body>
+</html>
